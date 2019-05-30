@@ -26,7 +26,7 @@ class UserController extends Controller
     public function postadd(Request $request) {
     	$this->validate($request,
     		[
-    			'name' => 'required',
+    			'name' => 'required|name',
     			'email' => 'required|email|unique:users,email',
     			'phone' => 'required',
     			'address' => 'required',
@@ -35,6 +35,7 @@ class UserController extends Controller
     		],	
     		[
     			'name.required' => 'Tên thành viên không được để trống.',
+                'name.name' => 'Tên thành viên không hợp lệ.',
     			'email.required' => 'Địa chỉ email không được để trống.',
     			'email.email' => 'Email không hợp lệ.',
     			'email.unique' => 'Email này đã được đăng ký.',
@@ -76,7 +77,7 @@ class UserController extends Controller
     public function postedit(Request $request, $id) {
     	$this->validate($request,
     		[
-    			'name' => 'required',
+    			'name' => 'required|name',
     			'email' => 'required|email',
     			'phone' => 'required',
     			'address' => 'required',
