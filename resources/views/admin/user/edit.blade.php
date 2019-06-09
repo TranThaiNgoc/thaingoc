@@ -37,7 +37,7 @@
                     </div>
                     <div class="form-group">
                     	<label>Địa chỉ email</label>
-                    	<input type="text" name="email" value="{{ $user->email }}" class="form-control" placeholder="nhập email">
+                    	<input type="text" name="email" value="{{ $user->email }}" class="form-control" placeholder="nhập email" disabled="">
                     </div>
                     <div class="form-group">
                     	<label>Số điện thoại</label>

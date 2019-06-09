@@ -26,7 +26,7 @@ class UserController extends Controller
     public function postadd(Request $request) {
     	$this->validate($request,
     		[
-    			'name' => 'required|name',
+    			'name' => 'required',
     			'email' => 'required|email|unique:users,email',
     			'phone' => 'required',
     			'address' => 'required',
@@ -35,7 +35,6 @@ class UserController extends Controller
     		],	
     		[
     			'name.required' => 'Tên thành viên không được để trống.',
-                'name.name' => 'Tên thành viên không hợp lệ.',
     			'email.required' => 'Địa chỉ email không được để trống.',
     			'email.email' => 'Email không hợp lệ.',
     			'email.unique' => 'Email này đã được đăng ký.',
@@ -78,24 +77,17 @@ class UserController extends Controller
     	$this->validate($request,
     		[
     			'name' => 'required|name',
-    			'email' => 'required|email',
     			'phone' => 'required',
     			'address' => 'required',
-    			'roles' => 'required',
     		],	
     		[
     			'name.required' => 'Tên thành viên không được để trống.',
-    			'email.required' => 'Địa chỉ email không được để trống.',
-    			'email.email' => 'Email không hợp lệ.',
-    			'email.unique' => 'Email này đã được đăng ký.',
     			'phone.required' => 'Số điện thoại không được để trống.',
-    			'roles.required' => 'Quyền truy cập không được để trống.',
     		]);
 
     	$user = DB::table('users')->where('id', $id);
     	$data = [
     		'name' => $request->name,
-    		'email' => $request->email,
     		'phone' => $request->phone,
     		'address' => $request->address,
     		'roles' => json_encode($request->roles),

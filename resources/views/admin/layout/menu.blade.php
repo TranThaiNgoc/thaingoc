@@ -12,52 +12,57 @@
                             </div>
                             <!-- /input-group -->
                         </li>
+                        @if(in_array("supperadmin",json_decode(Auth::user()->roles)))
                         <li>
-                            <a href="#"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-list-alt" aria-hidden="true"></i> Thể loại<span class="fa arrow"></span></a>
+                            <a href="#"><i class="far fa-newspaper"></i> Tin tức<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="#">Danh sách thể loại</a>
+                                    <a href="{{ route('admin.news') }}">Danh sách tin tức</a>
                                 </li>
                                 <li>
-                                    <a href="#">Thêm thể loại</a>
+                                    <a href="{{ route('admin.news.add') }}">Thêm tin tức</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-newspaper-o" aria-hidden="true"></i> Loại sản phẩm<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fas fa-search"></i> Tuyển dụng<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="#">Danh sách loại loại sản phẩm</a>
+                                    <a href="{{ route('admin.job') }}">Danh sách tuyển dụng</a>
                                 </li>
                                 <li>
-                                    <a href="#">Thêm loại loại sản phẩm</a>
+                                    <a href="{{ route('admin.job.add') }}">Thêm tuyển dụng</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="#"><i class="far fa-newspaper"></i> Sản phẩm<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fas fa-project-diagram"></i> Dự án<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="#">Danh sách sản phẩm</a>
+                                    <a href="{{ route('admin.project') }}">Danh sách tuyển dụng</a>
                                 </li>
                                 <li>
-                                    <a href="#">Thêm sản phẩm</a>
+                                    <a href="{{ route('admin.project.add') }}">Thêm tuyển dụng</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="#"><i class="fas fa-shopping-cart"></i> Đơn hàng<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fas fa-hammer"></i> Ngành nghề<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="#">Danh sách đơn hàng</a>
+                                    <a href="{{ route('admin.career') }}">Danh sách ngành nghề</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('admin.career.add') }}">Thêm ngành nghề</a>
                                 </li>
                             </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="{{ route('admin.configuration.add') }}"><i class="fas fa-sliders-h"></i> Cấu hình hệ thống<span class="fa arrow"></span></a>
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
@@ -72,6 +77,57 @@
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
+                        @elseif(in_array("admin",json_decode(Auth::user()->roles)))
+                        <li>
+                            <a href="#"><i class="far fa-newspaper"></i> Tin tức<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="{{ route('admin.news') }}">Danh sách tin tức</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('admin.news.add') }}">Thêm tin tức</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="#"><i class="fas fa-search"></i> Tuyển dụng<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="{{ route('admin.job') }}">Danh sách tuyển dụng</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('admin.job.add') }}">Thêm tuyển dụng</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="#"><i class="fas fa-project-diagram"></i> Dự án<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="{{ route('admin.project') }}">Danh sách tuyển dụng</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('admin.project.add') }}">Thêm tuyển dụng</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        @elseif(in_array("user",json_decode(Auth::user()->roles)))
+                        <li>
+                            <a href="#"><i class="far fa-newspaper"></i> Tin tức<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="{{ route('admin.news') }}">Danh sách tin tức</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('admin.news.add') }}">Thêm tin tức</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        @endif
                         
                     </ul>
                 </div>

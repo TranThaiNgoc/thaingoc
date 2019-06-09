@@ -16,8 +16,49 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-Route::group(['prefix' => 'admin', 'middleware' => ['auth',]],function(){
+Route::group(['prefix' => 'admin', 'middleware' => ['auth']],function(){
 	Route::get('/','HomeController@getAdmin')->name('admin');
+	
+	Route::group(['prefix' => 'job', 'middleware' => ['role:supperadmin,admin']],function(){
+		Route::get('/', 'JobController@getlist')->name('admin.job');
+		Route::get('add', 'JobController@getadd')->name('admin.job.add');
+		Route::post('add', 'JobController@postadd');
+		Route::get('edit/{id}', 'JobController@getedit')->name('admin.job.edit');
+		Route::post('edit/{id}', 'JobController@postedit');
+		Route::get('delete/{id}', 'JobController@getdelete')->name('admin.job.delete');
+	});
+
+	Route::group(['prefix' => 'project', 'middleware' => ['role:supperadmin,admin']],function(){
+		Route::get('/', 'ProjectController@getlist')->name('admin.project');
+		Route::get('add', 'ProjectController@getadd')->name('admin.project.add');
+		Route::post('add', 'ProjectController@postadd');
+		Route::get('edit/{id}', 'ProjectController@getedit')->name('admin.project.edit');
+		Route::post('edit/{id}', 'ProjectController@postedit');
+		Route::get('delete/{id}', 'ProjectController@getdelete')->name('admin.project.delete');
+	});
+
+	Route::group(['prefix' => 'news', 'middleware' => ['role:supperadmin,admin,user']],function(){
+		Route::get('/', 'NewsController@getlist')->name('admin.news');
+		Route::get('add', 'NewsController@getadd')->name('admin.news.add');
+		Route::post('add', 'NewsController@postadd');
+		Route::get('edit/{id}', 'NewsController@getedit')->name('admin.news.edit');
+		Route::post('edit/{id}', 'NewsController@postedit');
+		Route::get('delete/{id}', 'NewsController@getdelete')->name('admin.news.delete');
+	});
+
+	Route::group(['prefix' => 'career'],function(){
+		Route::get('/', 'CareerController@getlist')->name('admin.career');
+		Route::get('add', 'CareerController@getadd')->name('admin.career.add');
+		Route::post('add', 'CareerController@postadd');
+		Route::get('edit/{id}', 'CareerController@getedit')->name('admin.career.edit');
+		Route::post('edit/{id}', 'CareerController@postedit');
+		Route::get('delete/{id}', 'CareerController@getdelete')->name('admin.career.delete');
+	});
+
+	Route::group(['prefix' => 'configuration'],function(){
+		Route::get('/', 'ConfigurationController@getadd')->name('admin.configuration.add');
+		Route::post('/', 'ConfigurationController@postadd');
+	});
 	// Route::group(['prefix' => 'categories'],function(){
 	// 	Route::get('/', 'CategoriesController@getlist')->name('admin.categories');
 	// 	Route::get('add', 'CategoriesController@getadd')->name('admin.categories.add');
